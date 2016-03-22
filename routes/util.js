@@ -3,7 +3,7 @@ module.exports = {
     if(data.affectedRows>0){
       return {
         code:0,
-        message:'修改成功',
+        message:'操作成功',
         data:''
       };
     }else{

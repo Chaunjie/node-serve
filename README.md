@@ -1,9 +1,9 @@
 # Build web server and development interface based on node and MySQL
 
-### Clone project
+### Clone 
     git clone https://github.com/xudao520/node-serve.git;
     
-### Run project
+### Run 
     cd node-serve;
     npm install;
     node app;
@@ -13,7 +13,7 @@
 
         npm install mysql;
 
-2. Need to build a database and a new user table (test fields are ID, username, sex) .
+2. Need to build a database and a new user table (test fields are id, username, sex) .
 		
 		Find file dataBase.js(the directory is ./routes/dataBase.js) and open this js file;
 
@@ -29,6 +29,7 @@
 
 ### End
 	
-	When you finish the above tips and run the server can open the browser input (test example: http://localhost:3000/user/getUser) you will find everything OK.
+	When you finish the above tips and run the server can open the browser 
+	input (test example: http://localhost:3000/user/getUser) you will find everything is OK.
 
 

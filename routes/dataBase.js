@@ -4,11 +4,11 @@
 var mysql=require("mysql");
 
 var pool = mysql.createPool({
-    host: '',//127.0.0.0
-    user: '',//root
-    password: '',//123456
-    database: '',//test
-    port: 3306 //default port is 3306
+    host: 'localhost',
+    user: 'root',
+    password: '123456',
+    database: 'example',
+    port: 3306
 });
 
 var query=function(sql,callback){

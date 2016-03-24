@@ -1,0 +1,17 @@
+/*left select*/
+select * from goods as g
+left join shop as s on s.id=g.shop_id
+left join user as u on u.id = s.user_id
+where 1
+
+/*right select*/
+select * from user as u
+RIGHT join shop as s ON u.id=s.user_id
+right join goods as g on s.id=g.shop_id
+where 3
+
+/*group by*/
+select * from goods as g
+left join shop as s on s.id=g.shop_id
+left join user as u on u.id = s.user_id
+where 1 GROUP BY user_id;

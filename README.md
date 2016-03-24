@@ -12,16 +12,18 @@
 1. Before node app command need install mysql .
 
         npm install mysql;
+        
+2. You can use sql(the directory is ./sql/example.sql) to build database and tables(if you use the sql file please skip option 3)
 
-2. Need to build a database and a new user table (test fields are id, username, sex) .
+3. Need to build a database and a new user table (test fields are id, username, sex) .
 		
 		Find file dataBase.js(the directory is ./routes/dataBase.js) and open this js file;
 
 		var pool = mysql.createPool({
-		    host: '',//127.0.0.0
-		    user: '',//root
-		    password: '',//123456
-		    database: '',//test
+		    host: '',//default host is 127.0.0.1
+		    user: '',//default user is root
+		    password: '',//default pwd is 123456
+		    database: '',//default database is example
 		    port: 3306 //default port is 3306
 		});
 

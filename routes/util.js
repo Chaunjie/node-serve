@@ -1,3 +1,5 @@
+'use strict'
+
 module.exports = {
   throwOption: function(data){
     if(data.affectedRows>0){

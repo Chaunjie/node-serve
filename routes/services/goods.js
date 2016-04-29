@@ -8,7 +8,7 @@ module.exports = {
     init: function(app){
         app.get('/user/addUser', this.addUser);
         app.all('/user/deleteUser', this.deleteUser);
-        app.get('/user/getUser', this.getUser);
+        app.get('/user/getGood', this.getGood);
         app.get('/user/updateUser', this.updateUser);
     },
 
@@ -32,7 +32,7 @@ module.exports = {
 
     },
 
-    getUser: function(req, res) {
+    getGood: function(req, res) {
         query("SELECT * FROM user",function(err,vals,fields){
             res.send(vals);
         });

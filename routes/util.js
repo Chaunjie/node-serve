@@ -15,5 +15,13 @@ module.exports = {
         data:''
       };
     }
+  },
+
+  installData: function (data, type) {
+    return {
+      code: 0,
+      message: data ? data : ((type && type == 'Array') ? [] : {}),//((data instanceof Array) ? [] : {}),
+      data: 'success'
+    };
   }
 };

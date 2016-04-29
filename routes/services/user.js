@@ -36,7 +36,11 @@ module.exports = {
 
     getUser: function (req, res) {
         query("SELECT * FROM user", function (err, vals, fields) {
-            res.send(vals);
+            res.send({
+                code:0,
+                message:vals,
+                data: 'success'
+            });
         });
     },
 

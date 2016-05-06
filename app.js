@@ -142,7 +142,7 @@ wsServer.on('request', function (request) {
         //console.log((new Date()) + ' Peer ' + connection.remoteAddress + ' disconnected.');
     });
 });*/
-/*var clients = {};
+var clients = {};
 var io = socketio.listen(server);
 io.on('connection', function(socket) {
     socket.on('message', function (msg) {
@@ -170,7 +170,7 @@ io.on('connection', function(socket) {
         }
     })
 
-});*/
+});
 
 
 

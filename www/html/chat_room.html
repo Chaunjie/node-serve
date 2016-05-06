@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<title>title</title>
+		<link rel="stylesheet" type="text/css" href="../css/aui.css" />
+		<style>
+			.history-date {
+				font-size: 12px;
+			}
+			.login {
+				display: none;
+				margin-top: 200px;
+			}
+			.input-container {
+				position: fixed;
+				bottom: 0;
+				left: 0;
+				right: 0;
+			}
+			.input-container input{
+				margin-bottom:0px !important;
+			}
+			/*#message-content { overflow-y: auto;}*/
+		</style>
+	</head>
+	<body >
+		<div class="aui-content aui-content-padded" id="message-content">
+			<p class="aui-text-center history-date">
+				7-16 20:00
+			</p>
+			<div class='input-container'>
+				<form action="javascript:search();">
+					<input type="text" class="aui-input input-msg" placeholder="请输入" />
+				</form>
+			</div>
+		</div>
+		<div class="aui-content login">
+			<div class="aui-form">
+				<div class="aui-input-row">
+					<i class="aui-input-addon  aui-iconfont aui-icon-people"></i>
+					<input type="text" class="aui-input" placeholder="name" id="username"/>
+				</div>
+				<div class="aui-input-row">
+					<input type="password" class="aui-input" placeholder="password" id="pwd"/>
+					<i class="aui-input-addon  aui-iconfont aui-icon-lock"></i>
+				</div>
+				<div class="aui-btn-row">
+					<div class="aui-btn aui-btn-success" onclick="doSubmit()">
+						确认
+					</div>
+					&nbsp;&nbsp;
+					<div class="aui-btn aui-btn-warning" onclick="return false;">
+						取消
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="http://cdn.bootcss.com/jquery/3.0.0-beta1/jquery.js"></script>
+		<script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+		<script>
+			var iosocket = io('http://localhost:3000');
+			iosocket.on('connect', function(res) {
+				iosocket.on('message', function(message) {
+					console.log(message);
+				});
+				iosocket.on('disconnect', function() {
+					//mess.innerHTML = "断开连接";
+				});
+				iosocket.on('toxudao', function(data) {
+					//mess.innerHTML = "断开连接";
+					console.log(data);
+					var html = '<div class="aui-chat-receiver">'
+						+'<div class="aui-chat-receiver-avatar"><img src="../image/demo2.png"></div>'
+						+'<div class="aui-chat-receiver-cont">'
+						+'	<div class="aui-chat-left-triangle"></div>'
+						+'	<span>'+data.mess+'</span></div></div>';
+
+					$('.input-container').before(html);
+				});
+				iosocket.emit('disconnect', 'xudao');
+				iosocket.on('chat message', function(data) {
+					console.log(data);
+				})
+				iosocket.emit('new user', 'xudao');
+				//JSON.parse(JSON.parse(localStorage['member']).id));
+			});
+			function search() {
+				var msg = $('.input-msg').val();
+				$('.input-msg').val('');
+				
+				if(msg){
+					var html = '<div class="aui-chat-sender">' 
+						+ '<div class="aui-chat-sender-avatar"><img src="../image/demo1.png"></div>' 
+						+ '<div class="aui-chat-sender-cont">' 
+						+ '	<div class="aui-chat-right-triangle"></div>' 
+						+ '	<span>' + msg + '</span></div></div>';
+					$('.input-container').before(html);
+					
+					iosocket.emit('chat message', {
+						msg : msg,
+						user : 'xudao',
+						to : 'xudao2'
+					});
+				}else{
+					alert('内容不能为空！');
+				}
+			
+			}
+		</script>
+	</body>
+</html>

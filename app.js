@@ -28,43 +28,43 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //app.use('/', routes);
 //加载路由
-/*async.waterfall([
- function (callback) {
- routes(app);
- callback(null);
- },
- function () {
- // catch 404 and forward to error handler
- app.use(function (req, res, next) {
- var err = new Error('Not Found');
- err.status = 404;
- next(err);
- });
- // error handlers
+async.waterfall([
+    function (callback) {
+        routes(app);
+        callback(null);
+    },
+    function () {
+        // catch 404 and forward to error handler
+        app.use(function (req, res, next) {
+            var err = new Error('Not Found');
+            err.status = 404;
+            next(err);
+        });
+        // error handlers
 
- // development error handler
- // will print stacktrace
- if (app.get('env') === 'development') {
- app.use(function (err, req, res, next) {
- res.status(err.status || 500);
- res.render('error', {
- message: err.message,
- error: err
- });
- });
- }
+        // development error handler
+        // will print stacktrace
+        if (app.get('env') === 'development') {
+            app.use(function (err, req, res, next) {
+                res.status(err.status || 500);
+                res.render('error', {
+                    message: err.message,
+                    error: err
+                });
+            });
+        }
 
- // production error handler
- // no stacktraces leaked to user
- app.use(function (err, req, res, next) {
- res.status(err.status || 500);
- res.render('error', {
- message: err.message,
- error: {}
- });
- });
- }
- ]);*/
+        // production error handler
+        // no stacktraces leaked to user
+        app.use(function (err, req, res, next) {
+            res.status(err.status || 500);
+            res.render('error', {
+                message: err.message,
+                error: {}
+            });
+        });
+    }
+]);
 //app.use('/users', users);
 //设置跨域访问
 app.all('*', function (req, res, next) {
@@ -76,7 +76,7 @@ app.all('*', function (req, res, next) {
     next();
 });
 
-routes(app);
+//routes(app);
 //Test(app);
 
 var server = http.createServer(app);
@@ -142,7 +142,7 @@ wsServer.on('request', function (request) {
         //console.log((new Date()) + ' Peer ' + connection.remoteAddress + ' disconnected.');
     });
 });*/
-var clients = {};
+/*var clients = {};
 var io = socketio.listen(server);
 io.on('connection', function(socket) {
     socket.on('message', function (msg) {
@@ -170,7 +170,7 @@ io.on('connection', function(socket) {
         }
     })
 
-});
+});*/
 
 
 
